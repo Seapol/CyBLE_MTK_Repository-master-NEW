@@ -565,5 +565,8 @@
   &lt;string&gt;Com21&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="CurtBrdSerialPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

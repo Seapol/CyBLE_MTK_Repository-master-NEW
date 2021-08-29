@@ -31,7 +31,7 @@ namespace CyBLE_MTK_Application
     {
 
         private LogManager Logger;
-        private SerialPortSettingsDialog MTKSerialPortDialog, DUTSerialPortDialog;
+        private SerialPortSettingsDialog MTKSerialPortDialog, DUTSerialPortDialog, CurtBrdSerialPortDialog;
         private PreferencesDialog MTKPreferences;
         private bool UpdateTestInfo;
         private string BackupWindowText;
@@ -216,6 +216,35 @@ namespace CyBLE_MTK_Application
                     $"Hint: it is predefined in the AppConfig file, please check it in the device manager and manually connect it. ", LogDetailLevel.LogRelevant);
             }
             SplashScreen.LoadStatus += 8;
+
+            #region setup Serial Port for CurrentTestBoard
+            SplashScreen.LoadMessage = "Setting up Current Test Board serial port dialog...";
+            CurtBrdSerialPortDialog = new SerialPortSettingsDialog(Logger);
+            CurtBrdSerialPortDialog.ID = 0x20;
+            CurtBrdSerialPortDialog.Text = "Current Test Board Serial Port Setting";
+            CurtBrdSerialPortDialog.SerialPortType = PortType.CurrentTestBrd;
+            CurtBrdSerialPortDialog.CloseOnConnect = CyBLE_MTK_Application.Properties.Settings.Default.CloseSerialDialog;
+            CurtBrdSerialPortDialog.AutoVerifyON = true;
+            CurtBrdStatus.BackColor = Color.Red;
+            CurtBrdSerialPortDialog.OnCurtBrdConnectionStatusChange += new SerialPortSettingsDialog.ConnectionEventHandler(CurtBrdSerialPortDialog_OnConnectionStatusChange);
+            CurtBrdSerialPortDialog.DeviceSerialPort.PortName = CyBLE_MTK_Application.Properties.Settings.Default.CurtBrdSerialPort;
+            try
+            {
+                CurtBrdSerialPortDialog.DeviceSerialPort.Open();
+                CurtBrdStatus.BackColor = Color.Green;
+                SplashScreen.LoadMessage = $"Setting up Current Test Board serial port {CurtBrdSerialPortDialog.DeviceSerialPort.PortName} successfully...";
+                Logger.PrintLog(this, $"Setting up MTK serial port {CurtBrdSerialPortDialog.DeviceSerialPort.PortName} successfully...", LogDetailLevel.LogRelevant);
+            }
+            catch (Exception)
+            {
+
+                SplashScreen.LoadMessage = $"Setting up MTK serial port {CurtBrdSerialPortDialog.DeviceSerialPort.PortName} failure...";
+                Logger.PrintLog(this, $"Setting up MTK serial port {CurtBrdSerialPortDialog.DeviceSerialPort.PortName} failure... " +
+                    $"Hint: it is predefined in the AppConfig file, please check it in the device manager and manually connect it. ", LogDetailLevel.LogRelevant);
+            }
+            SplashScreen.LoadStatus += 8;
+
+            #endregion
 
             SplashScreen.LoadMessage = "Setting up DUT serial port dialog...";
             DUTSerialPortDialog = new SerialPortSettingsDialog(Logger);
@@ -4018,6 +4047,28 @@ namespace CyBLE_MTK_Application
             }
         }
 
+        private void CurtBrdSerialPortDialog_OnConnectionStatusChange(string ConnStatus)
+        {
+            if (ConnStatus == "CONNECTED")
+            {
+                if (IsHandleCreated)
+                {
+                    this.Invoke(new MethodInvoker(() => CurtBrdStatus.BackColor = Color.Green));
+                }
+            }
+            else if (ConnStatus == "DISCONNECTED")
+            {
+                if (MTKSerialPortDialog.DeviceSerialPort.IsOpen)
+                {
+                    this.Invoke(new MethodInvoker(() => CurtBrdSerialPortDialog.DeviceSerialPort.Close()));
+                }
+                if (IsHandleCreated)
+                {
+                    this.Invoke(new MethodInvoker(() => CurtBrdStatus.BackColor = Color.Red));
+                }
+            }
+        }
+
         private void TestProgramGridView_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
@@ -5220,6 +5271,24 @@ namespace CyBLE_MTK_Application
 
             return retVal;
 
+        }
+
+        private void mTKCurrentMeasureBoardRev20ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurtBrdSerialPortDialog.Text = "Current Test Board Serial Port Setting";
+            CurtBrdSerialPortDialog.CloseOnConnect = CyBLE_MTK_Application.Properties.Settings.Default.CloseSerialDialog;
+            CurtBrdSerialPortDialog.ShowDialog();
+            if (CurtBrdSerialPortDialog.DeviceSerialPort.IsOpen)
+            {
+                CyBLE_MTK_Application.Properties.Settings.Default.CurtBrdSerialPort = CurtBrdSerialPortDialog.DeviceSerialPort.PortName;
+                CyBLE_MTK_Application.Properties.Settings.Default.Save();
+
+                CurtBrdSerialPortDialog_OnConnectionStatusChange("CONNECTED");
+            }
+            else
+            {
+                CurtBrdSerialPortDialog_OnConnectionStatusChange("DISCONNECTED");
+            }
         }
 
         private MTKRecord FillinRecord(int CurrentDUT, string SerialNumber, string Model, string TesterID, UInt16 errorcode, string SocketId, string TestResult, string TestStation, string MFI_ID, string TestLog, string remarks)

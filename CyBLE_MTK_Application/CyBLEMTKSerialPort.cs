@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CyBLE_MTK_Application
 {
-    public enum PortType { NoType, Host, DUT, Anritsu };
+    public enum PortType { NoType, Host, DUT, Anritsu, CurrentTestBrd };
     public enum OpenPortStatus { NotOpen, Open, AlreadyInUse, NotCorrectType };
     public enum ClosePortStatus { NotClosed, Closed };
     public enum ExtPortType { NoType, Host, Dut, Host706 };

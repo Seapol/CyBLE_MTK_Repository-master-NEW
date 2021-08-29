@@ -1503,5 +1503,17 @@ namespace CyBLE_MTK_Application.Properties {
                 this["DUTPredefinedSerialPorts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
+        public string CurtBrdSerialPort {
+            get {
+                return ((string)(this["CurtBrdSerialPort"]));
+            }
+            set {
+                this["CurtBrdSerialPort"] = value;
+            }
+        }
     }
 }
