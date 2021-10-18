@@ -577,9 +577,10 @@ namespace CyBLE_MTK_Application
         }
 
 
-        public override string ToString()
+        public override string ToString()       
         {
-            return "#MTK" + PortName;
+            return PortName;
+            //return "#MTK" + PortName;
         }
     }
 }

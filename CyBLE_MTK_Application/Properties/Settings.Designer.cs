@@ -660,7 +660,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fittec")]
+        [global::System.Configuration.DefaultSettingValueAttribute("local")]
         public string SFCSInterface {
             get {
                 return ((string)(this["SFCSInterface"]));
@@ -1506,13 +1506,59 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM22")]
         public string CurtBrdSerialPort {
             get {
                 return ((string)(this["CurtBrdSerialPort"]));
             }
             set {
                 this["CurtBrdSerialPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\data.mdb")]
+        public string dataConnectionString {
+            get {
+                return ((string)(this["dataConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MTKCurrentBoard")]
+        public string CurrentTestMethod {
+            get {
+                return ((string)(this["CurrentTestMethod"]));
+            }
+            set {
+                this["CurrentTestMethod"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int boardV2_IntervalMS {
+            get {
+                return ((int)(this["boardV2_IntervalMS"]));
+            }
+            set {
+                this["boardV2_IntervalMS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int boardV2_NSamples {
+            get {
+                return ((int)(this["boardV2_NSamples"]));
+            }
+            set {
+                this["boardV2_NSamples"] = value;
             }
         }
     }

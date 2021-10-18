@@ -285,6 +285,8 @@ namespace CyBLE_MTK_Application
 
         private MTKTestError RunTestUART()
         {
+            DataHelper dataHelper = new DataHelper(Log);
+
             int PercentageComplete = 0;
             int DelayPerCommand = 20;//, msPerSecond = 1000;
             //int TimeForEachPacket = 700;
@@ -353,6 +355,8 @@ namespace CyBLE_MTK_Application
             
 
             int CommandResultsValue = int.Parse(CommandResult.Replace("dBm",""));
+
+            dataHelper.AcquireRSSIvalue(ChannelNumber, CommandResultsValue);
 
             if (CommandResultsValue < CyBLE_MTK_Application.Properties.Settings.Default.CyBLE_RSSI_LowerLimitDBM)
             {
