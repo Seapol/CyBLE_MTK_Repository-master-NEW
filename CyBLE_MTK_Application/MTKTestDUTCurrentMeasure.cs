@@ -270,7 +270,7 @@ namespace CyBLE_MTK_Application
                         case EnumPassConOverall.ONE_SAMPLE:
                             for (int i = 0; i < SamplesCount; i++)
                             {
-                                current_meas = PerformCH_CurrentTest(CyBLE_Current_Test_OnCurBrd.SW_CH_Closed[CurrentDUT]);
+                                current_meas = PerformCH_CurrentTest(CurrentDUT);
                                 if (current_meas >= DUTCurrentLowerLimitMilliAmp && current_meas <= DUTCurrentUpperLimitMilliAmp)
                                 {
                                     //Pass
@@ -282,7 +282,7 @@ namespace CyBLE_MTK_Application
                         case EnumPassConOverall.ALL_SAMPLES:
                             for (int i = 0; i < SamplesCount; i++)
                             {
-                                current_meas = PerformCH_CurrentTest(CyBLE_Current_Test_OnCurBrd.SW_CH_Closed[CurrentDUT]);
+                                current_meas = PerformCH_CurrentTest(CurrentDUT);
                                 if (current_meas <= DUTCurrentLowerLimitMilliAmp && current_meas >= DUTCurrentUpperLimitMilliAmp)
                                 {
                                     //Fail
@@ -343,17 +343,24 @@ namespace CyBLE_MTK_Application
 
         }
 
-        private double PerformCH_CurrentTest(bool CHstatus)
+        private double PerformCH_CurrentTest(int CH)
         {
             byte chmask = 0;
             double current = 0;
 
             for (int i = 0; i < CyBLE_Current_Test_OnCurBrd.SW_CH_Closed.Length; i++)
             {
-                if (CyBLE_Current_Test_OnCurBrd.SW_CH_Closed[i] == true)
+                if (CH == (i+1))
                 {
+                    CyBLE_Current_Test_OnCurBrd.SW_CH_Closed[i] = true;
                     chmask |= (byte)(1 << i);
                 }
+                else
+                {
+                    CyBLE_Current_Test_OnCurBrd.SW_CH_Closed[i] = false;
+                }
+
+                
             }
 
 

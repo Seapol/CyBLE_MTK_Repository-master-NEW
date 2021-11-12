@@ -195,7 +195,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DUTCurrentMeasureOverallPassCondition" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ALL_SAMPLES</Value>
+      <Value Profile="(Default)">ONE_SAMPLE</Value>
     </Setting>
     <Setting Name="IntervalBetweenDUTCurrentMeasure" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -258,7 +258,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TestModeLongRun" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="DUTTestInfoRemarks" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -273,7 +273,7 @@
       <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="CyBLE_RSSI_LowerLimitDBM" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-70</Value>
+      <Value Profile="(Default)">-90</Value>
     </Setting>
     <Setting Name="DUTProgrammerName" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -566,7 +566,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="CurtBrdSerialPort" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM22</Value>
+      <Value Profile="(Default)">COM30</Value>
     </Setting>
     <Setting Name="dataConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -583,7 +583,10 @@
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="boardV2_NSamples" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TestModeLongRunBetweenDelayMS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

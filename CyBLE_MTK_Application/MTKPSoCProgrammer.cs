@@ -571,8 +571,27 @@ namespace CyBLE_MTK_Application
                 return false;
             }
 
-            Log.PrintLog(this, "Checksum 0x" + hexChecksum.ToString("X"), LogDetailLevel.LogRelevant);
+            
 
+            if (!MTKTestProgramAll.MTKTestProgramAllAtEnd)
+            {
+                if (hexChecksum.ToString("X") != MTKTestProgramAll.FWChecksumBegin)
+                {
+                    Log.PrintLog(this, string.Format("HEX Checksum MisMatched: Actual: 0x{0} | Expect: 0x{1}",
+                        hexChecksum.ToString("X"), MTKTestProgramAll.FWChecksumBegin), LogDetailLevel.LogRelevant);
+                    return false;
+                }
+            }
+            else
+            {
+                if (hexChecksum.ToString("X") != MTKTestProgramAll.FWChecksumEnd)
+                {
+                    Log.PrintLog(this, string.Format("HEX Checksum MisMatched: Actual: 0x{0} | Expect: 0x{1}",
+                        hexChecksum.ToString("X"), MTKTestProgramAll.FWChecksumEnd), LogDetailLevel.LogRelevant);
+                    return false;
+                }
+            }
+            Log.PrintLog(this, "Checksum 0x" + hexChecksum.ToString("X"), LogDetailLevel.LogRelevant);
             return true;
         }
 

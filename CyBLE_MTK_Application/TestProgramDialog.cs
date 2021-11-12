@@ -241,7 +241,7 @@ namespace CyBLE_MTK_Application
                 {
                     MTKPSoCProgrammerDialog TempDialog = new MTKPSoCProgrammerDialog(MTKProgrammer);
                     if (TempDialog.ShowDialog() == DialogResult.OK)
-                    {
+                    {                        
                         UpdateTestProgramWithNewTest(MTKProgrammer);
                     }
                 }

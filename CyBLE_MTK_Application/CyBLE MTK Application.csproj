@@ -735,6 +735,7 @@
     <None Include="Resources\refresh_green.bmp" />
     <None Include="Resources\Refresh_32px_523850_easyicon.net.png" />
     <Content Include="Resources\tree.ico" />
+    <Content Include="test xml\CyBLE_022001_EZ_Serial_FW_V_1_1_1_RSSI_Crt_R03.xml" />
     <Content Include="tree.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

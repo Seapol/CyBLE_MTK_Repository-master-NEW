@@ -52,7 +52,13 @@ namespace CyBLE_MTK_Application
             MACATtextBox.Text = ProgAll.MACAddress;
             HWIDTextBox.Text = ProgAll.HWIDValue;
 
+            EnableChecksumBegin.Checked = ProgAll.EnableChecksumMatchBegin;
+            EnableChecksumEnd.Checked = ProgAll.EnableChecksumMatchEnd;
+            textBoxChecksumBegin.Text = ProgAll.ChecksumBegin;
+            textBoxChecksumEnd.Text = ProgAll.ChecksumEnd;
+
             DelayNumericUpDown.Value = (decimal)(ProgAll.UARTCaptureDelay);
+            ProgAll.GetDisplayText();
 
             base.OnLoad(e);
         }
@@ -131,7 +137,16 @@ namespace CyBLE_MTK_Application
             ProgAll.MACAddress = MACATtextBox.Text;
             ProgAll.HWIDValue = HWIDTextBox.Text;
 
+            ProgAll.EnableChecksumMatchBegin = EnableChecksumBegin.Checked;
+            ProgAll.EnableChecksumMatchEnd = EnableChecksumEnd.Checked;
+            ProgAll.ChecksumBegin = textBoxChecksumBegin.Text;
+            MTKTestProgramAll.FWChecksumBegin = textBoxChecksumBegin.Text;
+            ProgAll.ChecksumEnd = textBoxChecksumEnd.Text;
+            MTKTestProgramAll.FWChecksumEnd = textBoxChecksumEnd.Text;
+
             ProgAll.UARTCaptureDelay = (int)(DelayNumericUpDown.Value);
+
+            ProgAll.GetDisplayText();
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -249,6 +264,71 @@ namespace CyBLE_MTK_Application
             if (BCTextBox.Enabled == false)
             {
                 BCTextBox.Text = "";
+            }
+        }
+
+        private void EnableChecksumBegin_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxChecksumBegin.Enabled = false;
+            if (EnableChecksumBegin.Checked && !ProgAll.ProgramAllAtEnd)
+            {
+                textBoxChecksumBegin.Enabled = true;
+
+            }
+            else
+            {
+                EnableChecksumBegin.Checked = false;
+                textBoxChecksumBegin.Enabled = false;
+            }
+        }
+
+        private void EnableChecksumEnd_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxChecksumEnd.Enabled = false;
+            if (EnableChecksumEnd.Checked && ProgAll.ProgramAllAtEnd)
+            {
+                textBoxChecksumEnd.Enabled = true;
+            }
+            else
+            {
+                EnableChecksumEnd.Checked = false;
+                textBoxChecksumEnd.Enabled = false;
+            }
+        }
+
+        private void textBoxChecksumBegin_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxChecksumBegin.Text != "")
+            {
+                if (textBoxChecksumBegin.Text.Length > 0)
+                {
+                    ProgAll.ChecksumBegin = textBoxChecksumBegin.Text;
+                }
+
+
+
+            }
+            else
+            {
+            }
+        }
+
+        private void textBoxChecksumEnd_TextChanged(object sender, EventArgs e)
+        {
+            
+            if (textBoxChecksumEnd.Text != "")
+            {
+                if (textBoxChecksumEnd.Text.Length > 0)
+                {
+                    ProgAll.ChecksumEnd = textBoxChecksumEnd.Text;
+                }
+
+                
+                
+            }
+            else
+            {
+                
             }
         }
     }

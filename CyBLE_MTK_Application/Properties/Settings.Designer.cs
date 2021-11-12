@@ -793,7 +793,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ALL_SAMPLES")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ONE_SAMPLE")]
         public string DUTCurrentMeasureOverallPassCondition {
             get {
                 return ((string)(this["DUTCurrentMeasureOverallPassCondition"]));
@@ -1045,7 +1045,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int TestModeLongRun {
             get {
                 return ((int)(this["TestModeLongRun"]));
@@ -1105,7 +1105,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-70")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-90")]
         public int CyBLE_RSSI_LowerLimitDBM {
             get {
                 return ((int)(this["CyBLE_RSSI_LowerLimitDBM"]));
@@ -1506,7 +1506,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM22")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM30")]
         public string CurtBrdSerialPort {
             get {
                 return ((string)(this["CurtBrdSerialPort"]));
@@ -1552,13 +1552,25 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int boardV2_NSamples {
             get {
                 return ((int)(this["boardV2_NSamples"]));
             }
             set {
                 this["boardV2_NSamples"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int TestModeLongRunBetweenDelayMS {
+            get {
+                return ((int)(this["TestModeLongRunBetweenDelayMS"]));
+            }
+            set {
+                this["TestModeLongRunBetweenDelayMS"] = value;
             }
         }
     }

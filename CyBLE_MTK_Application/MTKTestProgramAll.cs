@@ -26,6 +26,8 @@ namespace CyBLE_MTK_Application
         //public List<SerialPort> DUTSerialPorts;
 
 
+        
+
         private bool programCompleted;
         public bool ProgramCompleted
         {
@@ -38,6 +40,15 @@ namespace CyBLE_MTK_Application
         public bool EnableModuleVerification, ApplicationVersionEnable, BLEStackVersionEnable, ProtocolVersionEnable, BootCauseEnable, MACAddressEnable, HWIDEnable;
         public string EventType, ApplicationVersion, BLEStackVersion, ProtocolVersion, BootCause, MACAddress, HWIDValue;
         public int UARTCaptureDelay;
+
+        public bool EnableChecksumMatchBegin = false;
+        public bool EnableChecksumMatchEnd = false;
+
+        public string ChecksumBegin = "";
+        public string ChecksumEnd = "";
+
+        public static string FWChecksumBegin = "";
+        public static string FWChecksumEnd = "";
 
         public event ProgramAllCompleteEventHandler OnProgramAllComplete;
         public event NumTestStatusUpdateEventHandler OnNumTestStatusUpdate;
@@ -84,7 +95,7 @@ namespace CyBLE_MTK_Application
             HWIDValue = "";
             UARTCaptureDelay = 50;
             programCompleted = false;
-            TestParameterCount = 17;
+            TestParameterCount = 21;
             NumberOfDUTs = TestProgramManager.NumberOfDUTs;
             CurrentDUT = 0;
 
@@ -92,10 +103,25 @@ namespace CyBLE_MTK_Application
 
         }
 
+        
         public override string GetDisplayText()
         {
             string temp = (ProgramAllAtEnd)?"at the end.":"at the begning.";
-            return "Program all devices " + temp;
+
+            FWChecksumBegin = ChecksumBegin;
+            FWChecksumEnd = ChecksumEnd;
+
+            if (!ProgramAllAtEnd)
+            {
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0}", ChecksumBegin);
+            }
+            else
+            {
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0}", ChecksumEnd);
+            }
+            
+
+            
         }
 
         public override string GetTestParameter(int TestParameterIndex)
@@ -136,6 +162,18 @@ namespace CyBLE_MTK_Application
                     return MACAddressEnable.ToString();
                 case 16:
                     return MACAddress;
+                case 17:
+                    return EnableChecksumMatchBegin.ToString();
+                case 18:
+                    FWChecksumBegin = ChecksumBegin;
+                    return ChecksumBegin;
+                case 19:
+                    return EnableChecksumMatchEnd.ToString();
+                case 20:
+                    FWChecksumEnd = ChecksumEnd;
+                    return ChecksumEnd;
+
+
             }
             return base.GetTestParameter(TestParameterIndex);
         }
@@ -178,6 +216,14 @@ namespace CyBLE_MTK_Application
                     return "MACAddressEnable";
                 case 16:
                     return "MACAddress";
+                case 17:
+                    return "EnableChecksumMatchBegin";
+                case 18:
+                    return "ChecksumBegin";
+                case 19:
+                    return "EnableChecksumMatchEnd";
+                case 20:
+                    return "ChecksumEnd";
             }
             return base.GetTestParameterName(TestParameterIndex);
         }
@@ -232,6 +278,19 @@ namespace CyBLE_MTK_Application
                 case 16:
                     MACAddress = ParameterValue;
                     return true;
+                case 17:
+                    return bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
+                case 18:
+                    ChecksumBegin = ParameterValue;
+                    FWChecksumBegin = ChecksumBegin;
+                    return true;
+                case 19:
+                    return bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
+                case 20:
+                    ChecksumEnd = ParameterValue;
+                    FWChecksumEnd = ChecksumEnd;
+                    return true;
+                    
             }
             return false;
         }
@@ -248,6 +307,7 @@ namespace CyBLE_MTK_Application
             //ProgramAllAtEnd == false : Begin
             if ((ProgramAllAtEnd == false) && (CurrentDUT == CyBLE_MTK.IndexConfiguredSerialPortfor1stRow))
             {
+                MTKTestProgramAllAtEnd = false;
                 InitializeTestResult();
                 programCompleted = false;
                 ProgramAll();
@@ -259,6 +319,7 @@ namespace CyBLE_MTK_Application
             //ProgramAllAtEnd == true : End
             if ((ProgramAllAtEnd == true) && (CurrentDUT == CyBLE_MTK.IndexConfiguredSerialPortforfinalRow))
             {
+                MTKTestProgramAllAtEnd = true;
                 InitializeTestResult();
                 programCompleted = false;
                 ProgramAll();
@@ -298,11 +359,33 @@ namespace CyBLE_MTK_Application
 
                 for (int i = 0; i < 10; i++)
                 {
+
+                    //#region RRS command
+
+                    //string Command = "RRS";
+                    ////Read Response 
+                    ////no return if failure 
+                    ////by cysp
+
+                    //int loops = 3;
+
+                    
+                    //for (int k = 0; k < loops; k++)
+                    //{
+                        
+                    //    if (SendCommand(DUTSerialPort, Command, 50) == MTKTestError.NoError)
+                    //    {
+                    //        break;          //break if SendCommand NoError by cysp
+                    //    }
+                    //    TestStatusUpdate(MTKTestMessageType.Information, "RRS Retry: " + (k + 1).ToString());
+                    //}
+
+                    //#endregion
                     Thread.Sleep(UARTCaptureDelay);
                     ReceivedEvent = DUTSerialPorts[DeviceCount].ReadExisting();
                     if (ReceivedEvent.Length > 1)
                     {
-                        Log.PrintLog(this, "DUT#" + (DeviceCount + 1).ToString() + ": UART Capture Dump successfully after tried: " + (i + 1).ToString() + " times.", LogDetailLevel.LogRelevant);
+                        Log.PrintLog(this, "DUT#" + (DeviceCount + 1).ToString() + ": UART Capture Dump successfully after tried: " + (i + 1).ToString() + " times.", LogDetailLevel.LogEverything);
                         break;
                     }
                     
@@ -366,7 +449,7 @@ namespace CyBLE_MTK_Application
                 }
                 else
                 {
-                    Log.PrintLog(this, "Cannot perform module checks, 'Event Parameter Length' mismatch.", LogDetailLevel.LogRelevant);
+                    Log.PrintLog(this, "Cannot perform module checks, 'Event Parameter Length' mismatch.", LogDetailLevel.LogEverything);
                 }
 
                 if (EventMismatch == true)
@@ -392,6 +475,30 @@ namespace CyBLE_MTK_Application
             bool return_value = true;
             List<Thread> ProgDUT = new List<Thread>();
             List<MTKTestError> ErrDUT = new List<MTKTestError>();
+
+            if (EnableModuleVerification)
+            {
+                #region Cycle Power All DUTs
+
+                if (CyBLE_MTK_Application.Properties.Settings.Default.CurrentTestMethod == "MTKCurrentBoard")
+                {
+                    try
+                    {
+                        MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
+                        Thread.Sleep(100);
+                        MTKCurrentMeasureBoard.Board.SW.CloseAllSWChannels();
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                }
+
+                #endregion
+            }
+
 
 
             for (i = 0; i < NumberOfDUTs; i++)

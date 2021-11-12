@@ -911,6 +911,8 @@ namespace CyBLE_MTK_Application
                     }
 
 
+                    Thread.Sleep(CyBLE_MTK_Application.Properties.Settings.Default.TestModeLongRunBetweenDelayMS);
+
                 }
             }
             else
@@ -925,34 +927,9 @@ namespace CyBLE_MTK_Application
 
             }
 
-            if (CyBLE_MTK_Application.Properties.Settings.Default.CurrentTestMethod.Contains("MTKCurrentBoard"))
-            {
+            
 
-                
 
-                if (Connect2CurtBrd(CurtBrdSerialPort))
-                {
-                    //Power Off all DUTs
-                    if (MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels())
-                    {
-                        Log.PrintLog(this, string.Format("[SUCC]: SUCC to Power Off all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
-
-                    }
-                    else
-                    {
-                        Log.PrintLog(this, string.Format("[ERROR]: Fail to Power Off all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
-                        MessageBox.Show(string.Format("[ERROR]: Fail to Power Off all DUTs via MTKCurrentBoard!!!"));
-                    }
-
-                    ////Power Off all DUTs
-                    //MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
-                }
-                else
-                {
-                    Log.PrintLog(this, string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
-                    MessageBox.Show(string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"));
-                }
-            }
 
         }
 
@@ -1027,6 +1004,9 @@ namespace CyBLE_MTK_Application
                 MessageBox.Show(ex.ToString(), "StopWatch of TestProgramManager");
             }
 
+            
+
+
             if (CheckAllDutsPermissionFailure())
             {
                 for (int i = 0; i < NumIteration; i++)
@@ -1038,6 +1018,50 @@ namespace CyBLE_MTK_Application
             }
             else
             {
+                #region PowerOn DUTs via MTKCurrentBoard
+                if (CyBLE_MTK_Application.Properties.Settings.Default.CurrentTestMethod.Contains("MTKCurrentBoard"))
+                {
+
+
+
+                    if (Connect2CurtBrd(CurtBrdSerialPort))
+                    {
+                        //Power On all DUTs
+                        if (MTKCurrentMeasureBoard.Board.SW.CloseAllSWChannels())
+                        {
+                            Log.PrintLog(this, string.Format("[SUCC]: SUCC to Power On all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+                            Thread.Sleep(500);
+
+                            double curr_val = 0.0;
+                            string msg = "";
+
+                            for (int i = 0; i < NumberOfDUTs; i++)
+                            {
+                                curr_val = MTKCurrentMeasureBoard.Board.DMM.MeasureCurrentAVG(i);
+                                msg += string.Format("[#{0}]: {1} mA ", i+1, curr_val.ToString("f02"));
+                            }
+
+                            Log.PrintLog(this, msg, LogDetailLevel.LogRelevant);
+                        }
+                        else
+                        {
+                            Log.PrintLog(this, string.Format("[ERROR]: Fail to Power On all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+                            MessageBox.Show(string.Format("[ERROR]: Fail to Power On all DUTs via MTKCurrentBoard!!!"));
+                            return;
+                        }
+
+                        ////Power Off all DUTs
+                        //MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
+                    }
+                    else
+                    {
+                        Log.PrintLog(this, string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+                        MessageBox.Show(string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"));
+                        return;
+                    }
+                }
+                #endregion
+
                 for (int j = 0; j < NumIteration; j++)
                 {
                     devTestComplete = false;
@@ -1136,7 +1160,47 @@ namespace CyBLE_MTK_Application
             _CurrentTestIndex = 0;
             CurrentTestStatus = TestProgramState.Stopped;
 
+            #region PowerOff DUTs via MTKCurrentBoard
+            if (CyBLE_MTK_Application.Properties.Settings.Default.CurrentTestMethod.Contains("MTKCurrentBoard"))
+            {
 
+
+
+                if (Connect2CurtBrd(CurtBrdSerialPort))
+                {
+                    //Power Off all DUTs
+                    if (MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels())
+                    {
+                        Log.PrintLog(this, string.Format("[SUCC]: SUCC to Power Off all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+
+                        double curr_val = 0.0;
+                        string msg = "";
+
+                        for (int i = 0; i < NumberOfDUTs; i++)
+                        {
+                            curr_val = MTKCurrentMeasureBoard.Board.DMM.MeasureCurrentAVG(i);
+                            msg += string.Format("[#{0}]: {1} mA ", i + 1, curr_val.ToString("f02"));
+                        }
+
+                        Log.PrintLog(this, msg, LogDetailLevel.LogRelevant);
+
+                    }
+                    else
+                    {
+                        Log.PrintLog(this, string.Format("[ERROR]: Fail to Power Off all DUTs via MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+                        MessageBox.Show(string.Format("[ERROR]: Fail to Power Off all DUTs via MTKCurrentBoard!!!"));
+                    }
+
+                    ////Power Off all DUTs
+                    //MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
+                }
+                else
+                {
+                    Log.PrintLog(this, string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"), LogDetailLevel.LogRelevant);
+                    MessageBox.Show(string.Format("[ERROR]: Fail to connect MTKCurrentBoard!!!"));
+                }
+            }
+            #endregion
 
 
         }
