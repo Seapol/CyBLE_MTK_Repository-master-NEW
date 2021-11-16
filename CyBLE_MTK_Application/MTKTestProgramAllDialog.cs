@@ -52,8 +52,14 @@ namespace CyBLE_MTK_Application
             MACATtextBox.Text = ProgAll.MACAddress;
             HWIDTextBox.Text = ProgAll.HWIDValue;
 
-            EnableChecksumBegin.Checked = ProgAll.EnableChecksumMatchBegin;
-            EnableChecksumEnd.Checked = ProgAll.EnableChecksumMatchEnd;
+            
+
+            ProgAll.EnableChecksumMatchBegin = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin;
+            ProgAll.EnableChecksumMatchEnd = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd;
+
+            EnableChecksumBegin.Checked = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin;
+            EnableChecksumEnd.Checked = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd;
+
             textBoxChecksumBegin.Text = ProgAll.ChecksumBegin;
             textBoxChecksumEnd.Text = ProgAll.ChecksumEnd;
 
@@ -139,6 +145,11 @@ namespace CyBLE_MTK_Application
 
             ProgAll.EnableChecksumMatchBegin = EnableChecksumBegin.Checked;
             ProgAll.EnableChecksumMatchEnd = EnableChecksumEnd.Checked;
+
+            CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin = EnableChecksumBegin.Checked;
+            CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd = EnableChecksumEnd.Checked;
+            CyBLE_MTK_Application.Properties.Settings.Default.Save();
+
             ProgAll.ChecksumBegin = textBoxChecksumBegin.Text;
             MTKTestProgramAll.FWChecksumBegin = textBoxChecksumBegin.Text;
             ProgAll.ChecksumEnd = textBoxChecksumEnd.Text;
@@ -273,27 +284,36 @@ namespace CyBLE_MTK_Application
             if (EnableChecksumBegin.Checked && !ProgAll.ProgramAllAtEnd)
             {
                 textBoxChecksumBegin.Enabled = true;
+                CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin = true;
 
             }
             else
             {
                 EnableChecksumBegin.Checked = false;
                 textBoxChecksumBegin.Enabled = false;
+                CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin = false;
             }
+
+            CyBLE_MTK_Application.Properties.Settings.Default.Save();
         }
 
         private void EnableChecksumEnd_CheckedChanged(object sender, EventArgs e)
         {
-            textBoxChecksumEnd.Enabled = false;
+            textBoxChecksumEnd.Enabled = false;            
+
             if (EnableChecksumEnd.Checked && ProgAll.ProgramAllAtEnd)
             {
                 textBoxChecksumEnd.Enabled = true;
+                CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd = true;
             }
             else
             {
                 EnableChecksumEnd.Checked = false;
                 textBoxChecksumEnd.Enabled = false;
+                CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd = false;
             }
+
+            CyBLE_MTK_Application.Properties.Settings.Default.Save();
         }
 
         private void textBoxChecksumBegin_TextChanged(object sender, EventArgs e)

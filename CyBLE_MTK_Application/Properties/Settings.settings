@@ -258,7 +258,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TestModeLongRun" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="DUTTestInfoRemarks" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -587,6 +587,12 @@
     </Setting>
     <Setting Name="TestModeLongRunBetweenDelayMS" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="EnableChecksumBegin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableChecksumEnd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

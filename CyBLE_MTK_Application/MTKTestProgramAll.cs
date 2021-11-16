@@ -44,6 +44,9 @@ namespace CyBLE_MTK_Application
         public bool EnableChecksumMatchBegin = false;
         public bool EnableChecksumMatchEnd = false;
 
+        public static bool EnableChecksumBegin = false;
+        public static bool EnableChecksumEnd = false;
+
         public string ChecksumBegin = "";
         public string ChecksumEnd = "";
 
@@ -113,11 +116,11 @@ namespace CyBLE_MTK_Application
 
             if (!ProgramAllAtEnd)
             {
-                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0}", ChecksumBegin);
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumBegin, EnableChecksumBegin);
             }
             else
             {
-                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0}", ChecksumEnd);
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumEnd, EnableChecksumEnd);
             }
             
 
@@ -163,11 +166,13 @@ namespace CyBLE_MTK_Application
                 case 16:
                     return MACAddress;
                 case 17:
+                    EnableChecksumMatchBegin = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin;
                     return EnableChecksumMatchBegin.ToString();
                 case 18:
                     FWChecksumBegin = ChecksumBegin;
                     return ChecksumBegin;
                 case 19:
+                    EnableChecksumMatchEnd = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd;
                     return EnableChecksumMatchEnd.ToString();
                 case 20:
                     FWChecksumEnd = ChecksumEnd;
@@ -279,13 +284,19 @@ namespace CyBLE_MTK_Application
                     MACAddress = ParameterValue;
                     return true;
                 case 17:
-                    return bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
+                    EnableChecksumBegin = bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
+                    CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin = EnableChecksumBegin;
+                    CyBLE_MTK_Application.Properties.Settings.Default.Save();
+                    return EnableChecksumBegin;
                 case 18:
                     ChecksumBegin = ParameterValue;
                     FWChecksumBegin = ChecksumBegin;
                     return true;
                 case 19:
-                    return bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
+                    EnableChecksumEnd = bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
+                    CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd = EnableChecksumEnd;
+                    CyBLE_MTK_Application.Properties.Settings.Default.Save();
+                    return EnableChecksumEnd;
                 case 20:
                     ChecksumEnd = ParameterValue;
                     FWChecksumEnd = ChecksumEnd;
@@ -304,6 +315,7 @@ namespace CyBLE_MTK_Application
 
             programCompleted = true;
 
+            
             //ProgramAllAtEnd == false : Begin
             if ((ProgramAllAtEnd == false) && (CurrentDUT == CyBLE_MTK.IndexConfiguredSerialPortfor1stRow))
             {
@@ -322,6 +334,32 @@ namespace CyBLE_MTK_Application
                 MTKTestProgramAllAtEnd = true;
                 InitializeTestResult();
                 programCompleted = false;
+
+                //#region MeasureCurrentAVG_AllChannels
+                //MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
+                //MTKCurrentMeasureBoard.Board.SW.CloseAllSWChannels();
+
+                //List<double> curr_vals = new List<double>();
+
+                //for (int i = 0; i < NumberOfDUTs; i++)
+                //{
+                //    curr_vals.Add(MTKCurrentMeasureBoard.Board.DMM.MeasureCurrentAVG(i+1));
+                    
+                //}
+
+                //string msg = "MeasureCurrentAVG_AllChannels: ";
+
+                //foreach (var item in curr_vals)
+                //{
+                //    msg += string.Format("|{0} mA|", item.ToString("f02"));
+                //}
+
+                //Log.PrintLog(this,string.Format(msg),LogDetailLevel.LogRelevant);
+
+                //#endregion
+
+
+
                 ProgramAll();
 
                 TestResult.Result = "DONE";
@@ -349,48 +387,39 @@ namespace CyBLE_MTK_Application
 
             ErrDUT = DUTProgrammers[DeviceCount].RunTest();
 
+
             if (EnableModuleVerification && DUTSerialPorts[DeviceCount].IsOpen)
             {
                 bool EventMismatch = true;
                 //Thread.Sleep(100);
                 //DUTProgrammers[DeviceCount].ResetDevice();
 
-                string ReceivedEvent = "";
 
-                for (int i = 0; i < 10; i++)
+                string ReceivedEvent = DUTSerialPorts[DeviceCount].ReadExisting();
+
+
+                for (int i = 0; i < 5; i++)
                 {
-
-                    //#region RRS command
-
-                    //string Command = "RRS";
-                    ////Read Response 
-                    ////no return if failure 
-                    ////by cysp
-
-                    //int loops = 3;
-
-                    
-                    //for (int k = 0; k < loops; k++)
-                    //{
-                        
-                    //    if (SendCommand(DUTSerialPort, Command, 50) == MTKTestError.NoError)
-                    //    {
-                    //        break;          //break if SendCommand NoError by cysp
-                    //    }
-                    //    TestStatusUpdate(MTKTestMessageType.Information, "RRS Retry: " + (k + 1).ToString());
-                    //}
-
-                    //#endregion
                     Thread.Sleep(UARTCaptureDelay);
+                    DUTSerialPorts[DeviceCount].WriteLine("\n");
                     ReceivedEvent = DUTSerialPorts[DeviceCount].ReadExisting();
-                    if (ReceivedEvent.Length > 1)
+
+                    int count = ReceivedEvent.ToCharArray().Count(x => x == ',');
+
+                    if (count > 8)
                     {
-                        Log.PrintLog(this, "DUT#" + (DeviceCount + 1).ToString() + ": UART Capture Dump successfully after tried: " + (i + 1).ToString() + " times.", LogDetailLevel.LogEverything);
                         break;
                     }
-                    
-                    
+
+                    Log.PrintLog(this, "DUT#" + (DeviceCount + 1).ToString() + " [Retry] " + i.ToString() + ": UART Capture Dump: " + ReceivedEvent, LogDetailLevel.LogRelevant);
                 }
+
+
+
+                char[] DelimiterChars = { ',', '\r', '\n' };
+                string[] RxEventSplit = ReceivedEvent.Split(DelimiterChars);
+
+
 
 
 
@@ -398,8 +427,7 @@ namespace CyBLE_MTK_Application
 
                 CyBLE_MTK.PSoCProgrammingResultAtEnd = ReceivedEvent;
 
-                char[] DelimiterChars = { ',', '\r', '\n' };
-                string[] RxEventSplit = ReceivedEvent.Split(DelimiterChars);
+                
 
                 if (RxEventSplit.Length > 9)
                 {
@@ -471,37 +499,41 @@ namespace CyBLE_MTK_Application
 
         private bool ProgramAll()
         {
-            int i;
+            
             bool return_value = true;
             List<Thread> ProgDUT = new List<Thread>();
             List<MTKTestError> ErrDUT = new List<MTKTestError>();
 
             if (EnableModuleVerification)
             {
-                #region Cycle Power All DUTs
+                #region PowerCycling All DUTs & MeasureCurrentAVG_AllChannels
+                MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
+                MTKCurrentMeasureBoard.Board.SW.CloseAllSWChannels();
 
-                if (CyBLE_MTK_Application.Properties.Settings.Default.CurrentTestMethod == "MTKCurrentBoard")
+                List<double> curr_vals = new List<double>();
+
+                for (int i = 0; i < NumberOfDUTs; i++)
                 {
-                    try
-                    {
-                        MTKCurrentMeasureBoard.Board.SW.OpenAllSWChannels();
-                        Thread.Sleep(100);
-                        MTKCurrentMeasureBoard.Board.SW.CloseAllSWChannels();
+                    curr_vals.Add(MTKCurrentMeasureBoard.Board.DMM.MeasureCurrentAVG(i));
 
-                    }
-                    catch (Exception)
-                    {
-
-
-                    }
                 }
 
+                string msg = "MeasureCurrentAVG_AllChannels: ";
+
+                foreach (var item in curr_vals)
+                {
+                    msg += string.Format("|{0} mA|", item.ToString("f02"));
+                }
+
+                Log.PrintLog(this, string.Format(msg), LogDetailLevel.LogRelevant);
+
                 #endregion
+
             }
 
 
 
-            for (i = 0; i < NumberOfDUTs; i++)
+            for (int i = 0; i < NumberOfDUTs; i++)
             {
                 DUTProgrammers[i].SelectedHEXFilePath = this.SelectedHEXFilePath;
                 ErrDUT.Add(new MTKTestError());
@@ -539,14 +571,14 @@ namespace CyBLE_MTK_Application
                 //ProgDUT[i].Join();
             }
 
-            for (i = 0; i < ProgDUT.Count(); i++)
+            for (int i = 0; i < ProgDUT.Count(); i++)
             {
                 ProgDUT[i].Join();
             }
 
             //this.InitializeTestResult();
             TestResult.Measured = "";
-            for (i = 0; i < ErrDUT.Count(); i++)
+            for (int i = 0; i < ErrDUT.Count(); i++)
             {
                 if (i > 0)
                 {
@@ -667,6 +699,9 @@ namespace CyBLE_MTK_Application
             TestResult.Measured = "N/A";
 
             CurrentMTKTestType = MTKTestType.MTKTestProgramAll;
+
+            EnableChecksumBegin = EnableChecksumMatchBegin;
+            EnableChecksumEnd = EnableChecksumMatchEnd;
 
             try
             {

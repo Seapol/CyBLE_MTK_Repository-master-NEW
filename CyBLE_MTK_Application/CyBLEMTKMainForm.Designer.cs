@@ -465,8 +465,8 @@ namespace CyBLE_MTK_Application
             // 
             this.AppSWVersionLabel.BackColor = System.Drawing.Color.LightBlue;
             this.AppSWVersionLabel.Name = "AppSWVersionLabel";
-            this.AppSWVersionLabel.Size = new System.Drawing.Size(73, 20);
-            this.AppSWVersionLabel.Text = "Version：  ";
+            this.AppSWVersionLabel.Size = new System.Drawing.Size(65, 20);
+            this.AppSWVersionLabel.Text = "Version：";
             // 
             // ApplicationMode
             // 

@@ -1045,7 +1045,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int TestModeLongRun {
             get {
                 return ((int)(this["TestModeLongRun"]));
@@ -1571,6 +1571,30 @@ namespace CyBLE_MTK_Application.Properties {
             }
             set {
                 this["TestModeLongRunBetweenDelayMS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableChecksumBegin {
+            get {
+                return ((bool)(this["EnableChecksumBegin"]));
+            }
+            set {
+                this["EnableChecksumBegin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableChecksumEnd {
+            get {
+                return ((bool)(this["EnableChecksumEnd"]));
+            }
+            set {
+                this["EnableChecksumEnd"] = value;
             }
         }
     }
