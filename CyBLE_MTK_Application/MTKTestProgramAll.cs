@@ -166,11 +166,13 @@ namespace CyBLE_MTK_Application
                 case 16:
                     return MACAddress;
                 case 17:
+                    EnableChecksumBegin = EnableChecksumMatchBegin;
                     return EnableChecksumMatchBegin.ToString();
                 case 18:
                     FWChecksumBegin = ChecksumBegin;
                     return ChecksumBegin;
                 case 19:
+                    EnableChecksumEnd = EnableChecksumMatchEnd;
                     return EnableChecksumMatchEnd.ToString();
                 case 20:
                     FWChecksumEnd = ChecksumEnd;
@@ -282,16 +284,16 @@ namespace CyBLE_MTK_Application
                     MACAddress = ParameterValue;
                     return true;
                 case 17:
-                    EnableChecksumBegin = bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
-                    
+                    bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
+                    EnableChecksumBegin = EnableChecksumMatchBegin;
                     return EnableChecksumBegin;
                 case 18:
                     ChecksumBegin = ParameterValue;
                     FWChecksumBegin = ChecksumBegin;
                     return true;
                 case 19:
-                    EnableChecksumEnd = bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
-                    
+                    bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
+                    EnableChecksumEnd = EnableChecksumMatchEnd;
                     return EnableChecksumEnd;
                 case 20:
                     ChecksumEnd = ParameterValue;
