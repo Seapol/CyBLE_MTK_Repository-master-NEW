@@ -588,11 +588,5 @@
     <Setting Name="TestModeLongRunBetweenDelayMS" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>
     </Setting>
-    <Setting Name="EnableChecksumBegin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="EnableChecksumEnd" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

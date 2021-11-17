@@ -157,7 +157,7 @@ namespace CyBLE_MTK_Application
             this.MTKMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MTKMenuStrip.Name = "MTKMenuStrip";
             this.MTKMenuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.MTKMenuStrip.Size = new System.Drawing.Size(1371, 28);
+            this.MTKMenuStrip.Size = new System.Drawing.Size(1371, 30);
             this.MTKMenuStrip.TabIndex = 0;
             this.MTKMenuStrip.Text = "MTK_menu";
             // 
@@ -178,7 +178,7 @@ namespace CyBLE_MTK_Application
             this.toolStripSeparator2,
             this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
-            this.FileMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.FileMenuItem.Size = new System.Drawing.Size(46, 26);
             this.FileMenuItem.Text = "&File";
             // 
             // NewTestProgramMenuItem
@@ -280,7 +280,7 @@ namespace CyBLE_MTK_Application
             this.TestProgramMenuItem,
             this.PreferencesMenuItem});
             this.EditMenuItem.Name = "EditMenuItem";
-            this.EditMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.EditMenuItem.Size = new System.Drawing.Size(49, 26);
             this.EditMenuItem.Text = "&Edit";
             // 
             // SupervisorModeMenuItem
@@ -325,7 +325,7 @@ namespace CyBLE_MTK_Application
             this.anritsuToolStripMenuItem,
             this.dUTSelectorToolStripMenuItem});
             this.SerialPortMenuItem.Name = "SerialPortMenuItem";
-            this.SerialPortMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.SerialPortMenuItem.Size = new System.Drawing.Size(90, 26);
             this.SerialPortMenuItem.Text = "&Serial Port";
             // 
             // MTKHostToolStripMenuItem
@@ -364,7 +364,7 @@ namespace CyBLE_MTK_Application
             this.manufacturingModeConfigToolStripMenuItem,
             this.startRobotServerToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // uARTTerminalToolStripMenuItem
@@ -424,7 +424,7 @@ namespace CyBLE_MTK_Application
             this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutMenuItem});
             this.HelpMenuItem.Name = "HelpMenuItem";
-            this.HelpMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.HelpMenuItem.Size = new System.Drawing.Size(55, 26);
             this.HelpMenuItem.Text = "&Help";
             // 
             // AboutMenuItem
@@ -612,13 +612,13 @@ namespace CyBLE_MTK_Application
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.MainSplitContainer, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 590F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1371, 822);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1371, 820);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // MainSplitContainer
@@ -637,8 +637,8 @@ namespace CyBLE_MTK_Application
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.LogGroupBox);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1371, 822);
-            this.MainSplitContainer.SplitterDistance = 481;
+            this.MainSplitContainer.Size = new System.Drawing.Size(1371, 820);
+            this.MainSplitContainer.SplitterDistance = 479;
             this.MainSplitContainer.SplitterWidth = 5;
             this.MainSplitContainer.TabIndex = 25;
             // 
@@ -656,7 +656,7 @@ namespace CyBLE_MTK_Application
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1371, 481);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1371, 479);
             this.tableLayoutPanel4.TabIndex = 24;
             // 
             // DUTInformationGroupBox
@@ -667,7 +667,7 @@ namespace CyBLE_MTK_Application
             this.DUTInformationGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.DUTInformationGroupBox.Name = "DUTInformationGroupBox";
             this.DUTInformationGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.DUTInformationGroupBox.Size = new System.Drawing.Size(716, 473);
+            this.DUTInformationGroupBox.Size = new System.Drawing.Size(716, 471);
             this.DUTInformationGroupBox.TabIndex = 0;
             this.DUTInformationGroupBox.TabStop = false;
             this.DUTInformationGroupBox.Text = "DUT Information";
@@ -687,7 +687,7 @@ namespace CyBLE_MTK_Application
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(708, 450);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(708, 448);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // DUTInfoDataGridView
@@ -723,7 +723,7 @@ namespace CyBLE_MTK_Application
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DUTInfoDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DUTInfoDataGridView.RowHeadersWidth = 51;
-            this.DUTInfoDataGridView.Size = new System.Drawing.Size(708, 382);
+            this.DUTInfoDataGridView.Size = new System.Drawing.Size(708, 380);
             this.DUTInfoDataGridView.TabIndex = 37;
             // 
             // DUTcontextMenuStrip
@@ -860,7 +860,7 @@ namespace CyBLE_MTK_Application
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(647, 481);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(647, 479);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
             // TestProgramGroupBox

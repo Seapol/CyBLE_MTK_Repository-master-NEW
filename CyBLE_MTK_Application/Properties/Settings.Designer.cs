@@ -1573,29 +1573,5 @@ namespace CyBLE_MTK_Application.Properties {
                 this["TestModeLongRunBetweenDelayMS"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EnableChecksumBegin {
-            get {
-                return ((bool)(this["EnableChecksumBegin"]));
-            }
-            set {
-                this["EnableChecksumBegin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EnableChecksumEnd {
-            get {
-                return ((bool)(this["EnableChecksumEnd"]));
-            }
-            set {
-                this["EnableChecksumEnd"] = value;
-            }
-        }
     }
 }

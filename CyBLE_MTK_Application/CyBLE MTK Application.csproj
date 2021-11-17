@@ -87,7 +87,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\CyBLE_MTK_Release_4.6.0_CYBLE-022001-00_STE\</OutputPath>
+    <OutputPath>bin\CyBLE_MTK_Release_4.7.0_CYBLE-022001-00_STE\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

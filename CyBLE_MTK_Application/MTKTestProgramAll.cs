@@ -116,11 +116,11 @@ namespace CyBLE_MTK_Application
 
             if (!ProgramAllAtEnd)
             {
-                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumBegin, EnableChecksumBegin);
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumBegin, EnableChecksumMatchBegin);
             }
             else
             {
-                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumEnd, EnableChecksumEnd);
+                return "Program all devices " + temp + " " + string.Format("Checksum: 0x{0} | Enabled: {1}", ChecksumEnd, EnableChecksumMatchEnd);
             }
             
 
@@ -166,13 +166,11 @@ namespace CyBLE_MTK_Application
                 case 16:
                     return MACAddress;
                 case 17:
-                    EnableChecksumMatchBegin = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin;
                     return EnableChecksumMatchBegin.ToString();
                 case 18:
                     FWChecksumBegin = ChecksumBegin;
                     return ChecksumBegin;
                 case 19:
-                    EnableChecksumMatchEnd = CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd;
                     return EnableChecksumMatchEnd.ToString();
                 case 20:
                     FWChecksumEnd = ChecksumEnd;
@@ -285,8 +283,7 @@ namespace CyBLE_MTK_Application
                     return true;
                 case 17:
                     EnableChecksumBegin = bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
-                    CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumBegin = EnableChecksumBegin;
-                    CyBLE_MTK_Application.Properties.Settings.Default.Save();
+                    
                     return EnableChecksumBegin;
                 case 18:
                     ChecksumBegin = ParameterValue;
@@ -294,8 +291,7 @@ namespace CyBLE_MTK_Application
                     return true;
                 case 19:
                     EnableChecksumEnd = bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
-                    CyBLE_MTK_Application.Properties.Settings.Default.EnableChecksumEnd = EnableChecksumEnd;
-                    CyBLE_MTK_Application.Properties.Settings.Default.Save();
+                    
                     return EnableChecksumEnd;
                 case 20:
                     ChecksumEnd = ParameterValue;

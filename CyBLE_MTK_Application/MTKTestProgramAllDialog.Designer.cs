@@ -56,10 +56,10 @@
             this.AVTextBox = new System.Windows.Forms.TextBox();
             this.ModuleFWValidCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.EnableChecksumBegin = new System.Windows.Forms.CheckBox();
-            this.EnableChecksumEnd = new System.Windows.Forms.CheckBox();
-            this.textBoxChecksumBegin = new System.Windows.Forms.TextBox();
             this.textBoxChecksumEnd = new System.Windows.Forms.TextBox();
+            this.textBoxChecksumBegin = new System.Windows.Forms.TextBox();
+            this.EnableChecksumEnd = new System.Windows.Forms.CheckBox();
+            this.EnableChecksumBegin = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.HexGroupBox.SuspendLayout();
             this.ModuleCheckGroupBox.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CloseButton.Location = new System.Drawing.Point(229, 582);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(4);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(100, 28);
             this.CloseButton.TabIndex = 18;
@@ -82,7 +82,7 @@
             // OKButton
             // 
             this.OKButton.Location = new System.Drawing.Point(121, 582);
-            this.OKButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OKButton.Margin = new System.Windows.Forms.Padding(4);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(100, 28);
             this.OKButton.TabIndex = 17;
@@ -95,9 +95,9 @@
             this.groupBox1.Controls.Add(this.EndRadioButton);
             this.groupBox1.Controls.Add(this.BegningRadioButton);
             this.groupBox1.Location = new System.Drawing.Point(17, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(417, 55);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
@@ -107,7 +107,7 @@
             // 
             this.EndRadioButton.AutoSize = true;
             this.EndRadioButton.Location = new System.Drawing.Point(260, 23);
-            this.EndRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EndRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.EndRadioButton.Name = "EndRadioButton";
             this.EndRadioButton.Size = new System.Drawing.Size(143, 21);
             this.EndRadioButton.TabIndex = 1;
@@ -121,7 +121,7 @@
             this.BegningRadioButton.AutoSize = true;
             this.BegningRadioButton.Checked = true;
             this.BegningRadioButton.Location = new System.Drawing.Point(8, 23);
-            this.BegningRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BegningRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.BegningRadioButton.Name = "BegningRadioButton";
             this.BegningRadioButton.Size = new System.Drawing.Size(170, 21);
             this.BegningRadioButton.TabIndex = 0;
@@ -146,9 +146,9 @@
             this.HexGroupBox.Controls.Add(this.OpenHEXFileButton);
             this.HexGroupBox.Controls.Add(this.HexFilePathTextBox);
             this.HexGroupBox.Location = new System.Drawing.Point(16, 79);
-            this.HexGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HexGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.HexGroupBox.Name = "HexGroupBox";
-            this.HexGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HexGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.HexGroupBox.Size = new System.Drawing.Size(419, 49);
             this.HexGroupBox.TabIndex = 37;
             this.HexGroupBox.TabStop = false;
@@ -186,9 +186,9 @@
             this.ModuleCheckGroupBox.Controls.Add(this.AVTextBox);
             this.ModuleCheckGroupBox.Enabled = false;
             this.ModuleCheckGroupBox.Location = new System.Drawing.Point(16, 276);
-            this.ModuleCheckGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModuleCheckGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.ModuleCheckGroupBox.Name = "ModuleCheckGroupBox";
-            this.ModuleCheckGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModuleCheckGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.ModuleCheckGroupBox.Size = new System.Drawing.Size(419, 299);
             this.ModuleCheckGroupBox.TabIndex = 38;
             this.ModuleCheckGroupBox.TabStop = false;
@@ -199,7 +199,7 @@
             this.BCCheckBox.AutoSize = true;
             this.BCCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BCCheckBox.Location = new System.Drawing.Point(76, 224);
-            this.BCCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BCCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.BCCheckBox.Name = "BCCheckBox";
             this.BCCheckBox.Size = new System.Drawing.Size(130, 21);
             this.BCCheckBox.TabIndex = 13;
@@ -211,7 +211,7 @@
             // 
             this.BCTextBox.Enabled = false;
             this.BCTextBox.Location = new System.Drawing.Point(217, 222);
-            this.BCTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BCTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.BCTextBox.Name = "BCTextBox";
             this.BCTextBox.Size = new System.Drawing.Size(172, 22);
             this.BCTextBox.TabIndex = 14;
@@ -219,7 +219,7 @@
             // DelayNumericUpDown
             // 
             this.DelayNumericUpDown.Location = new System.Drawing.Point(176, 28);
-            this.DelayNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DelayNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.DelayNumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -263,7 +263,7 @@
             "BOOT",
             "TFAC"});
             this.EventTypeComboBox.Location = new System.Drawing.Point(217, 60);
-            this.EventTypeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EventTypeComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.EventTypeComboBox.Name = "EventTypeComboBox";
             this.EventTypeComboBox.Size = new System.Drawing.Size(172, 24);
             this.EventTypeComboBox.TabIndex = 4;
@@ -284,7 +284,7 @@
             this.MACACheckBox.AutoSize = true;
             this.MACACheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MACACheckBox.Location = new System.Drawing.Point(64, 256);
-            this.MACACheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MACACheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.MACACheckBox.Name = "MACACheckBox";
             this.MACACheckBox.Size = new System.Drawing.Size(142, 21);
             this.MACACheckBox.TabIndex = 15;
@@ -297,7 +297,7 @@
             this.PVCheckBox.AutoSize = true;
             this.PVCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.PVCheckBox.Location = new System.Drawing.Point(47, 160);
-            this.PVCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PVCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.PVCheckBox.Name = "PVCheckBox";
             this.PVCheckBox.Size = new System.Drawing.Size(161, 21);
             this.PVCheckBox.TabIndex = 9;
@@ -310,7 +310,7 @@
             this.HWIDCheckBox.AutoSize = true;
             this.HWIDCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.HWIDCheckBox.Location = new System.Drawing.Point(68, 192);
-            this.HWIDCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HWIDCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.HWIDCheckBox.Name = "HWIDCheckBox";
             this.HWIDCheckBox.Size = new System.Drawing.Size(136, 21);
             this.HWIDCheckBox.TabIndex = 11;
@@ -323,7 +323,7 @@
             this.BSVCheckBox.AutoSize = true;
             this.BSVCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BSVCheckBox.Location = new System.Drawing.Point(31, 128);
-            this.BSVCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BSVCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.BSVCheckBox.Name = "BSVCheckBox";
             this.BSVCheckBox.Size = new System.Drawing.Size(174, 21);
             this.BSVCheckBox.TabIndex = 7;
@@ -336,7 +336,7 @@
             this.AVCheckBox.AutoSize = true;
             this.AVCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.AVCheckBox.Location = new System.Drawing.Point(29, 96);
-            this.AVCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AVCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.AVCheckBox.Name = "AVCheckBox";
             this.AVCheckBox.Size = new System.Drawing.Size(178, 21);
             this.AVCheckBox.TabIndex = 5;
@@ -348,7 +348,7 @@
             // 
             this.MACATtextBox.Enabled = false;
             this.MACATtextBox.Location = new System.Drawing.Point(217, 254);
-            this.MACATtextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MACATtextBox.Margin = new System.Windows.Forms.Padding(4);
             this.MACATtextBox.Name = "MACATtextBox";
             this.MACATtextBox.Size = new System.Drawing.Size(172, 22);
             this.MACATtextBox.TabIndex = 16;
@@ -357,7 +357,7 @@
             // 
             this.HWIDTextBox.Enabled = false;
             this.HWIDTextBox.Location = new System.Drawing.Point(217, 190);
-            this.HWIDTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HWIDTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.HWIDTextBox.Name = "HWIDTextBox";
             this.HWIDTextBox.Size = new System.Drawing.Size(172, 22);
             this.HWIDTextBox.TabIndex = 12;
@@ -366,7 +366,7 @@
             // 
             this.PVTextBox.Enabled = false;
             this.PVTextBox.Location = new System.Drawing.Point(217, 158);
-            this.PVTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PVTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PVTextBox.Name = "PVTextBox";
             this.PVTextBox.Size = new System.Drawing.Size(172, 22);
             this.PVTextBox.TabIndex = 10;
@@ -375,7 +375,7 @@
             // 
             this.BLESVTextBox.Enabled = false;
             this.BLESVTextBox.Location = new System.Drawing.Point(217, 126);
-            this.BLESVTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BLESVTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.BLESVTextBox.Name = "BLESVTextBox";
             this.BLESVTextBox.Size = new System.Drawing.Size(172, 22);
             this.BLESVTextBox.TabIndex = 8;
@@ -384,7 +384,7 @@
             // 
             this.AVTextBox.Enabled = false;
             this.AVTextBox.Location = new System.Drawing.Point(217, 94);
-            this.AVTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AVTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AVTextBox.Name = "AVTextBox";
             this.AVTextBox.Size = new System.Drawing.Size(172, 22);
             this.AVTextBox.TabIndex = 6;
@@ -393,7 +393,7 @@
             // 
             this.ModuleFWValidCheckBox.AutoSize = true;
             this.ModuleFWValidCheckBox.Location = new System.Drawing.Point(17, 248);
-            this.ModuleFWValidCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModuleFWValidCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.ModuleFWValidCheckBox.Name = "ModuleFWValidCheckBox";
             this.ModuleFWValidCheckBox.Size = new System.Drawing.Size(233, 21);
             this.ModuleFWValidCheckBox.TabIndex = 3;
@@ -414,17 +414,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Firmware Checksum Match";
             // 
-            // EnableChecksumBegin
+            // textBoxChecksumEnd
             // 
-            this.EnableChecksumBegin.AutoSize = true;
-            this.EnableChecksumBegin.Location = new System.Drawing.Point(7, 22);
-            this.EnableChecksumBegin.Margin = new System.Windows.Forms.Padding(4);
-            this.EnableChecksumBegin.Name = "EnableChecksumBegin";
-            this.EnableChecksumBegin.Size = new System.Drawing.Size(289, 21);
-            this.EnableChecksumBegin.TabIndex = 40;
-            this.EnableChecksumBegin.Text = "Enable firmware checksum match (begin)";
-            this.EnableChecksumBegin.UseVisualStyleBackColor = true;
-            this.EnableChecksumBegin.CheckedChanged += new System.EventHandler(this.EnableChecksumBegin_CheckedChanged);
+            this.textBoxChecksumEnd.Enabled = false;
+            this.textBoxChecksumEnd.Location = new System.Drawing.Point(303, 51);
+            this.textBoxChecksumEnd.Name = "textBoxChecksumEnd";
+            this.textBoxChecksumEnd.Size = new System.Drawing.Size(100, 22);
+            this.textBoxChecksumEnd.TabIndex = 43;
+            this.textBoxChecksumEnd.Text = "0000";
+            this.textBoxChecksumEnd.TextChanged += new System.EventHandler(this.textBoxChecksumEnd_TextChanged);
+            // 
+            // textBoxChecksumBegin
+            // 
+            this.textBoxChecksumBegin.Enabled = false;
+            this.textBoxChecksumBegin.Location = new System.Drawing.Point(303, 21);
+            this.textBoxChecksumBegin.Name = "textBoxChecksumBegin";
+            this.textBoxChecksumBegin.Size = new System.Drawing.Size(100, 22);
+            this.textBoxChecksumBegin.TabIndex = 42;
+            this.textBoxChecksumBegin.Text = "0000";
+            this.textBoxChecksumBegin.TextChanged += new System.EventHandler(this.textBoxChecksumBegin_TextChanged);
             // 
             // EnableChecksumEnd
             // 
@@ -438,25 +446,17 @@
             this.EnableChecksumEnd.UseVisualStyleBackColor = true;
             this.EnableChecksumEnd.CheckedChanged += new System.EventHandler(this.EnableChecksumEnd_CheckedChanged);
             // 
-            // textBoxChecksumBegin
+            // EnableChecksumBegin
             // 
-            this.textBoxChecksumBegin.Enabled = false;
-            this.textBoxChecksumBegin.Location = new System.Drawing.Point(303, 21);
-            this.textBoxChecksumBegin.Name = "textBoxChecksumBegin";
-            this.textBoxChecksumBegin.Size = new System.Drawing.Size(100, 22);
-            this.textBoxChecksumBegin.TabIndex = 42;
-            this.textBoxChecksumBegin.Text = "0000";
-            this.textBoxChecksumBegin.TextChanged += new System.EventHandler(this.textBoxChecksumBegin_TextChanged);
-            // 
-            // textBoxChecksumEnd
-            // 
-            this.textBoxChecksumEnd.Enabled = false;
-            this.textBoxChecksumEnd.Location = new System.Drawing.Point(303, 51);
-            this.textBoxChecksumEnd.Name = "textBoxChecksumEnd";
-            this.textBoxChecksumEnd.Size = new System.Drawing.Size(100, 22);
-            this.textBoxChecksumEnd.TabIndex = 43;
-            this.textBoxChecksumEnd.Text = "0000";
-            this.textBoxChecksumEnd.TextChanged += new System.EventHandler(this.textBoxChecksumEnd_TextChanged);
+            this.EnableChecksumBegin.AutoSize = true;
+            this.EnableChecksumBegin.Location = new System.Drawing.Point(7, 22);
+            this.EnableChecksumBegin.Margin = new System.Windows.Forms.Padding(4);
+            this.EnableChecksumBegin.Name = "EnableChecksumBegin";
+            this.EnableChecksumBegin.Size = new System.Drawing.Size(289, 21);
+            this.EnableChecksumBegin.TabIndex = 40;
+            this.EnableChecksumBegin.Text = "Enable firmware checksum match (begin)";
+            this.EnableChecksumBegin.UseVisualStyleBackColor = true;
+            this.EnableChecksumBegin.CheckedChanged += new System.EventHandler(this.EnableChecksumBegin_CheckedChanged);
             // 
             // MTKTestProgramAllDialog
             // 
@@ -471,11 +471,12 @@
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MTKTestProgramAllDialog";
             this.Text = "Program All Devices";
+            this.Load += new System.EventHandler(this.MTKTestProgramAllDialog_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.HexGroupBox.ResumeLayout(false);
