@@ -286,7 +286,7 @@ namespace CyBLE_MTK_Application
                 case 17:
                     bool.TryParse(ParameterValue, out EnableChecksumMatchBegin);
                     EnableChecksumBegin = EnableChecksumMatchBegin;
-                    return EnableChecksumBegin;
+                    return true;
                 case 18:
                     ChecksumBegin = ParameterValue;
                     FWChecksumBegin = ChecksumBegin;
@@ -294,7 +294,7 @@ namespace CyBLE_MTK_Application
                 case 19:
                     bool.TryParse(ParameterValue, out EnableChecksumMatchEnd);
                     EnableChecksumEnd = EnableChecksumMatchEnd;
-                    return EnableChecksumEnd;
+                    return true;
                 case 20:
                     ChecksumEnd = ParameterValue;
                     FWChecksumEnd = ChecksumEnd;
