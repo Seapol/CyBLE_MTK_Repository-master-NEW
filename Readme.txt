@@ -1,4 +1,11 @@
 Release notes:
+2022-02-17 (v4.7.1)
+1.Regression test for the following features verification
+	a.MTK Current Measure Board V2.0 provide VDD supply ON OFF control
+	b.MTK Current Measure Board V2.0 provide current measure test on VDD supply
+	c.BLE RSSI test
+	d.Robot TCP communication function
+
 2021-10-18 (v4.6.0)
 1.Test development for CyBLE Current Test on MTK-CURRENT-MEASUREMENT-BOARD V2.0
 

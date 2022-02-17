@@ -4725,11 +4725,12 @@ namespace CyBLE_MTK_Application
                 shopfloor_permission = new bool[DUTInfoDataGridView.Rows.Count];
             }
 
-            if (!m_SFCS.Connect())
-            {
-                return -1;
-            }
-            
+            //if (!m_SFCS.Connect())
+            //{
+            //    return -1;
+            //}
+
+            m_SFCS.Connect();
 
             for (int i = 0; i < DUTInfoDataGridView.Rows.Count; i++)
             {
