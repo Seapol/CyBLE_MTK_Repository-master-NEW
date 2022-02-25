@@ -1,4 +1,9 @@
 Release notes:
+2022-02-25 (V4.7.2)
+1.Remove test result from DUTTestLog filename prefix
+2.fix bug of RSSI wrong test result in the DUTTestlog
+3.Config setting to App Log and DUT Test Log whenever MTK software launched 
+
 2022-02-17 (v4.7.1)
 1.Regression test for the following features verification
 	a.MTK Current Measure Board V2.0 provide VDD supply ON OFF control

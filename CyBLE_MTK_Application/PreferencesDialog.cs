@@ -138,6 +138,7 @@ namespace CyBLE_MTK_Application
                 Log.PrintLog(this, AppLogPathGroupBox.Text + ": " + CyBLE_MTK_Application.Properties.Settings.Default.ApplicationLogPath
                     + " > " + AppLogDirPathTextBox.Text, LogDetailLevel.LogRelevant);
                 CyBLE_MTK_Application.Properties.Settings.Default.ApplicationLogPath = AppLogDirPathTextBox.Text;
+                CyBLE_MTK_Application.Properties.Settings.Default.Save();
                 RestartRequired = true;
                 IsEdited = true;
             }

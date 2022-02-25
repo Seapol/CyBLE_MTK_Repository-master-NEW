@@ -383,6 +383,11 @@ namespace CyBLE_MTK_Application
             MTKTestError RetVal = MTKTestError.NoError;
             List<MTKTestError> mTKTestErrors = new List<MTKTestError>();
 
+            MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_ALL_PASS;
+            TestStatusUpdate(MTKTestMessageType.Failure, "Pass");
+            RetVal = MTKTestError.NoError;
+            TestResult.Result = "PASS";
+
             mTKTestErrors.Clear();
             TempParameters.Clear();
             TempValues.Clear();
@@ -426,7 +431,7 @@ namespace CyBLE_MTK_Application
                     case MTKTestError.NoError:
                         if (MTKSerialPort.IsOpen)
                         {
-                            MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_ALL_PASS;
+                            
                         }
                         else
                         {
@@ -443,8 +448,8 @@ namespace CyBLE_MTK_Application
                         TestStatusUpdate(MTKTestMessageType.Failure,"Fail");
                         RetVal = MTKTestError.TestFailed;
                         TestResult.Result = "FAIL";
-                        TestResultUpdate(TestResult);
-                        return RetVal;
+                        //return RetVal;
+                        break;
                     case MTKTestError.NoConnectionModeSet:
                         break;
                     case MTKTestError.MissingDUTSerialPort:
@@ -459,7 +464,6 @@ namespace CyBLE_MTK_Application
                         MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_DUT_NOT_TEST;
                         RetVal = MTKTestError.IgnoringDUT;
                         TestResult.Result = "IGNORE";
-                        TestResultUpdate(TestResult);
                         return RetVal;
                     case MTKTestError.NotAllDevicesProgrammed:
                         break;
@@ -473,18 +477,17 @@ namespace CyBLE_MTK_Application
                         MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CUS_TEST_FAILURE_BUT_UNKNOWN;
                         RetVal = MTKTestError.TestFailed;
                         TestResult.Result = "FAIL";
-                        TestResultUpdate(TestResult);
                         return RetVal;
                         
                 }
 
+                
 
             }
 
-            
-            
 
-            
+
+
             stopwatch.Stop();
             this.Log.PrintLog(this, string.Format("Perform {0}: {1} secs", DisplayText, stopwatch.Elapsed.TotalMilliseconds / 1000), LogDetailLevel.LogRelevant);
             TestResultUpdate(TestResult);

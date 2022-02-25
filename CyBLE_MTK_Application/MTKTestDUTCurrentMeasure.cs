@@ -535,7 +535,6 @@ namespace CyBLE_MTK_Application
                     }
                 }
 
-                TestResultUpdate(TestResult);
 
                 //Overall TestResult
                 if (RetVal == MTKTestError.NoError)

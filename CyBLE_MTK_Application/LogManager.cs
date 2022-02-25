@@ -105,6 +105,8 @@ namespace CyBLE_MTK_Application
                 CanFileBeCreated = false;
                 this.PrintLog(this, "Unable to open log file for write. Use \"Edit > Preferences > Logs >" +
                     "Application Logs\" to select a location.", LogDetailLevel.LogRelevant);
+
+                MessageBox.Show(string.Format("Unable to open App Log file [{0}] for write.", ApplicationLogFileName));
             }
             else
             {

@@ -184,7 +184,25 @@ namespace CyBLE_MTK_Application
             if (CyBLE_MTK_Application.Properties.Settings.Default.AutoSaveAppLogs == true)
             {
                 string AppLogPath = CyBLE_MTK_Application.Properties.Settings.Default.ApplicationLogPath;
+                
+
+                if (!Directory.Exists(AppLogPath))
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(AppLogPath);
+                    }
+                    catch (Exception)
+                    {
+
+                        AppLogPath = Directory.GetCurrentDirectory();
+                    }
+                    
+                }
+
                 Logger = new LogManager(LogLVL, this.LogTextBox, AppLogPath);
+
+                Logger.PrintLog(this,string.Format("Define Application Log File Path to {0}", AppLogPath),LogDetailLevel.LogRelevant);
             }
             else
             {
@@ -2101,13 +2119,13 @@ namespace CyBLE_MTK_Application
 
                 if (DUTInfoDataGridView.Rows[CurrentDUT].Cells[2].Value.ToString().ToUpper() == "PASS")
                 {
-                    ResultLogFileName = "PASS_" + ResultLogFileName;
+                    //ResultLogFileName = "PASS_" + ResultLogFileName;
                     this.Invoke(new MethodInvoker(() => DUTInfoDataGridView.Rows[CurrentDUT].Cells["Status"].Style = new DataGridViewCellStyle { ForeColor = Color.Green, BackColor = Color.LightGreen }));
                     this.Invoke(new MethodInvoker(() => DUTInfoDataGridView.Rows[CurrentDUT].Cells["Status"].Value = "PASS"));
                 }
                 else
                 {
-                    ResultLogFileName = "FAIL_" + ResultLogFileName;
+                    //ResultLogFileName = "FAIL_" + ResultLogFileName;
 
                     if (!CyBLE_MTK.shopfloor_permission[CurrentDUT])
                     {
