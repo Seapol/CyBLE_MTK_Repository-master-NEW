@@ -1,4 +1,9 @@
 Release notes:
+2022-03-01 (v4.7.3)
+1.fix the bug of CyBLEMTKRobotServer Stop Exception block the app log generation in the main thread
+2.fix the bug of RSST test showing false pass due to DUT Missing
+3.Make the Overall test result label aligned to the left in the GUI
+
 2022-02-25 (V4.7.2)
 1.Remove test result from DUTTestLog filename prefix
 2.fix bug of RSSI wrong test result in the DUTTestlog

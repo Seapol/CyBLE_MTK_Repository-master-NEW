@@ -442,6 +442,10 @@ namespace CyBLE_MTK_Application
                     case MTKTestError.ReceivedNAC:
                         break;
                     case MTKTestError.MissingDUT:
+                        MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CyBLE_GetRSSI_TEST_FAIL;
+                        TestStatusUpdate(MTKTestMessageType.Failure, "Fail");
+                        RetVal = MTKTestError.TestFailed;
+                        TestResult.Result = "FAIL";
                         break;
                     case MTKTestError.TestFailed:
                         MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CyBLE_GetRSSI_TEST_FAIL;
@@ -453,8 +457,16 @@ namespace CyBLE_MTK_Application
                     case MTKTestError.NoConnectionModeSet:
                         break;
                     case MTKTestError.MissingDUTSerialPort:
+                        MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CyBLE_GetRSSI_TEST_FAIL;
+                        TestStatusUpdate(MTKTestMessageType.Failure, "Fail");
+                        RetVal = MTKTestError.TestFailed;
+                        TestResult.Result = "FAIL";
                         break;
                     case MTKTestError.MissingMTKSerialPort:
+                        MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CyBLE_GetRSSI_TEST_FAIL;
+                        TestStatusUpdate(MTKTestMessageType.Failure, "Fail");
+                        RetVal = MTKTestError.TestFailed;
+                        TestResult.Result = "FAIL";
                         break;
                     case MTKTestError.UnknownError:
                         break;

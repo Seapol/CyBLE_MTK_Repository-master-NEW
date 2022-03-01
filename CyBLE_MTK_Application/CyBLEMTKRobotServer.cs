@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
+using System.Windows.Forms;
 
 namespace CyBLE_MTK_Application
 {
@@ -413,6 +414,11 @@ namespace CyBLE_MTK_Application
                         Log.PrintLog(this, "Exception on receiving message: " + ex.ToString(), LogDetailLevel.LogRelevant);
                         Log.PrintLog(this, "ThreadRunningStage: " + ThreadRunningStage.ToString(), LogDetailLevel.LogRelevant);
 
+
+                    //MessageBox.Show(string.Format("AcceptThread.Abort() due to {0}",ex.ToString()));
+                    //AcceptThread.Abort();
+                    
+
                     break;
                 }
             }
@@ -588,14 +594,41 @@ namespace CyBLE_MTK_Application
                 return false;
             }
 
+
+
             if (AcceptThread == null)
             {
                 Log.PrintLog(this, "Starting RobotThread accept thread ...", gDebugLevel);
                 ThreadRunningStage = 0;
                 AcceptThread = new Thread(() => AcceptThreadFunc());
                 AcceptThread.Name = "MTKRobotSvrThread";
-                AcceptThread.Start();
+                try
+                {
+
+                    AcceptThread.Start();
+                }
+                catch (Exception ex)
+                {
+
+                    Log.PrintLog(this, "Exception on AcceptThread...: " + ex.ToString(), LogDetailLevel.LogRelevant);
+                }
+
             }
+            else
+            {
+                AcceptThread.Name = "MTKRobotSvrThread1";
+                try
+                {
+                    
+                    AcceptThread.Start();
+                }
+                catch (Exception ex)
+                {
+
+                    Log.PrintLog(this, "Exception on AcceptThread...: " + ex.ToString(), LogDetailLevel.LogRelevant);
+                }
+            }
+
 
             return true;
         }
@@ -638,21 +671,23 @@ namespace CyBLE_MTK_Application
 
                     TestResultsUploadedEvent.Set();
 
-                    for (i = 0; ((i < 20) && ThreadRunningStage > 0); i++)
+                    for (i = 0; ((i < 50) && ThreadRunningStage > 0); i++)
                     {
                         Log.PrintLog(this, "Stopping MTKRobotServer retry " + i.ToString() + " IsThreadRunning = " + ThreadRunningStage.ToString(), gDebugLevel);
 
                         Thread.Sleep(100);
                     }
 
-                    if (i >= 20)
+                    if (i >= 50)
                     {
                         /* Sometimes DevicePollThread can't be scheduled (One case, it is blocked in SerialPort Write/Read) even wait about 3 seconds here */
                         Log.PrintLog(this, AcceptThread.Name + " will be forcedly terminated. IsThreadRunning: " + ThreadRunningStage.ToString(), LogDetailLevel.LogRelevant);
+                        Thread.Sleep(100);
                     }
                     else
                     {
                         Log.PrintLog(this, AcceptThread.Name + " is terminated. IsThreadRunning: " + ThreadRunningStage.ToString(), LogDetailLevel.LogRelevant);
+                        Thread.Sleep(100);
                     }
 
                     AcceptThread.Abort();

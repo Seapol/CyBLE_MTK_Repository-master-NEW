@@ -1546,9 +1546,10 @@ namespace CyBLE_MTK_Application
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
+
             this.Close();
-            //Application.Exit();
-            //System.Environment.Exit(0);
+            Application.Exit();
+            System.Environment.Exit(0);
         }
 
         protected override void OnLoad(EventArgs e)
