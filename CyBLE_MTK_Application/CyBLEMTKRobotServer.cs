@@ -330,7 +330,11 @@ namespace CyBLE_MTK_Application
                     {
                         ThreadRunningStage = 12;
                         if (!IsSuppressDbgInThread)
+                        {
                             Log.PrintLog(this, "Session is terminated by remote.", LogDetailLevel.LogRelevant);
+                            MessageBox.Show(string.Format("Session is terminated by remote."), "TCP Session Terminated Warning");
+                        }
+                            
                         break;
                     }
 
@@ -373,7 +377,10 @@ namespace CyBLE_MTK_Application
                         {
                             ThreadRunningStage = 16;
                             if (!IsSuppressDbgInThread)
+                            {
                                 Log.PrintLog(this, "Session was terminated by user.", LogDetailLevel.LogRelevant);
+                                MessageBox.Show(string.Format("Session was terminated by user."), "TCP Session Terminated Warning");
+                            }
                             break;
                         }
 
@@ -384,13 +391,22 @@ namespace CyBLE_MTK_Application
                             Log.PrintLog(this, "RobotMessageAck: " + ackMsg, LogDetailLevel.LogRelevant);
 
                         byte[] ackBytes = Encoding.ASCII.GetBytes(ackMsg.ToArray());
-                        if (cs.Send(ackBytes) != ackBytes.Count())
+                        try
                         {
-                            ThreadRunningStage = 13;
-                            if (!IsSuppressDbgInThread)
-                                Log.PrintLog(this, "Session was terminated duo to sending ack message error.", LogDetailLevel.LogRelevant);
-                            break;
+                            if (cs.Send(ackBytes) != ackBytes.Count())
+                            {
+                                ThreadRunningStage = 13;
+                                if (!IsSuppressDbgInThread)
+                                    Log.PrintLog(this, "Session was terminated duo to sending ack message error.", LogDetailLevel.LogRelevant);
+                                break;
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(string.Format("Session was terminated duo to sending ack message error. Reason: [{0}]", ex.Message),"TCP Session Terminated Exception");
+                            
+                        }
+                        
                         ClearPendingTests();
                         continue;
                     }
