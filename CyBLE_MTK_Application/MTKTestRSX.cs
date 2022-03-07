@@ -461,6 +461,7 @@ namespace CyBLE_MTK_Application
                         TestStatusUpdate(MTKTestMessageType.Failure, "Fail");
                         RetVal = MTKTestError.TestFailed;
                         TestResult.Result = "FAIL";
+
                         break;
                     case MTKTestError.MissingMTKSerialPort:
                         MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CyBLE_GetRSSI_TEST_FAIL;

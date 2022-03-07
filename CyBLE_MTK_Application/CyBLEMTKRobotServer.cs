@@ -431,9 +431,9 @@ namespace CyBLE_MTK_Application
                         Log.PrintLog(this, "ThreadRunningStage: " + ThreadRunningStage.ToString(), LogDetailLevel.LogRelevant);
 
 
-                    //MessageBox.Show(string.Format("AcceptThread.Abort() due to {0}",ex.ToString()));
-                    //AcceptThread.Abort();
-                    
+                    MessageBox.Show(string.Format("AcceptThread.Abort() due to {0}", ex.ToString()));
+                    AcceptThread.Abort();
+
 
                     break;
                 }
@@ -627,6 +627,7 @@ namespace CyBLE_MTK_Application
                 {
 
                     Log.PrintLog(this, "Exception on AcceptThread...: " + ex.ToString(), LogDetailLevel.LogRelevant);
+                    MessageBox.Show("Exception on AcceptThread...: " + ex.ToString());
                 }
 
             }
@@ -642,6 +643,7 @@ namespace CyBLE_MTK_Application
                 {
 
                     Log.PrintLog(this, "Exception on AcceptThread...: " + ex.ToString(), LogDetailLevel.LogRelevant);
+                    MessageBox.Show("Exception on AcceptThread...: " + ex.ToString());
                 }
             }
 

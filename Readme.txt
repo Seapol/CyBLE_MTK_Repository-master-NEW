@@ -1,4 +1,8 @@
 Release notes:
+2022-03-07 (v4.7.4)
+1.flush buffer to writerstream before App log append new line
+2.Handle OnTestError for those test failure due to MTKSerialPort or DUTSerialPort UART communication loss
+
 2022-03-01 (v4.7.3)
 1.fix the bug of CyBLEMTKRobotServer Stop Exception block the app log generation in the main thread
 2.fix the bug of RSST test showing false pass due to DUT Missing

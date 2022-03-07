@@ -121,7 +121,7 @@ namespace CyBLE_MTK_Application.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Cypress\\\\PSoCPRoc\\\\App Log\\\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ApplicationLogPath {
             get {
                 return ((string)(this["ApplicationLogPath"]));

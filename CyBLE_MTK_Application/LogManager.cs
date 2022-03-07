@@ -140,8 +140,21 @@ namespace CyBLE_MTK_Application
 
                 if (LogFile != null)
                 {
+                    try
+                    {
+                        LogFile.Flush();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(string.Format("Exception of App Log File [{0}] WriterSteam due to {1}", ApplicationLogFileName ,ex.Message
+                            ),"App Log File WriterSteam Exception");
+                    }
+                    
                     LogFile.WriteLine(TimeStamp + ": "
                         + Sender.GetType().Name + ": " + Message);
+
+                    
                 }
 
                 return true;

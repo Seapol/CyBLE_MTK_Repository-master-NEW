@@ -202,6 +202,11 @@ namespace CyBLE_MTK_Application
 
                 Logger = new LogManager(LogLVL, this.LogTextBox, AppLogPath);
 
+                
+
+                Logger.PrintLog(this, string.Format("MTK App software [{0}] launched ... ", AppSWVersionLabel.Text), LogDetailLevel.LogRelevant);
+
+
                 Logger.PrintLog(this,string.Format("Define Application Log File Path to {0}", AppLogPath),LogDetailLevel.LogRelevant);
             }
             else

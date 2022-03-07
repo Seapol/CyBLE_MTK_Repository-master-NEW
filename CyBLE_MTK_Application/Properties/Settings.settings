@@ -27,7 +27,7 @@
       <Value Profile="(Default)">Relevant</Value>
     </Setting>
     <Setting Name="ApplicationLogPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\\Cypress\\PSoCPRoc\\App Log\\</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="AutoSaveAppLogs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

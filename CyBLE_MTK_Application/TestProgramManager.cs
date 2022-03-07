@@ -811,8 +811,9 @@ namespace CyBLE_MTK_Application
                         }
                         OnOverallFail();
                         FailedOnce = true;
-                        OnTestError(TestResult, TestResult.ToString());
+                        
                     }
+                    OnTestError(TestResult, TestResult.ToString());
                 }
 
                 if (CurrentTestStatus == TestProgramState.Pause)
