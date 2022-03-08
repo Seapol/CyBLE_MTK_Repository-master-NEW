@@ -298,7 +298,11 @@ namespace CyBLE_MTK_Application
 
             MTKTestError CommandRetVal;
 
+
+
             this.Log.PrintLog(this, GetDisplayText(), LogDetailLevel.LogRelevant);
+
+
 
             TestStatusUpdate(MTKTestMessageType.Information, PercentageComplete.ToString() + "%");
 
@@ -307,7 +311,7 @@ namespace CyBLE_MTK_Application
             CommandRetVal = SendCommand(DUTSerialPort, Command, DelayPerCommand);
             if (CommandRetVal != MTKTestError.NoError)
             {
-                return CommandRetVal;
+                return MTKTestError.MissingDUT;
             }
 
             //  Command #2  //From DUT
@@ -315,7 +319,7 @@ namespace CyBLE_MTK_Application
             CommandRetVal = SendCommand(DUTSerialPort, Command, DelayPerCommand);
             if (CommandRetVal != MTKTestError.NoError)
             {
-                return CommandRetVal;
+                return MTKTestError.MissingDUT;
             }
 
             Thread.Sleep(100); //wait for DUT TXP transmit completion
@@ -325,22 +329,23 @@ namespace CyBLE_MTK_Application
             CommandRetVal = SendCommand(MTKSerialPort, Command, DelayPerCommand);
             if (CommandRetVal != MTKTestError.NoError)
             {
-                return CommandRetVal;
+                return MTKTestError.MissingMTKSerialPort;
             }
 
             
             //  Command #3 //From Host
             Command = "RRS";
             CommandRetVal = SendCommand(MTKSerialPort, Command, DelayPerCommand);
+            if (CommandRetVal != MTKTestError.NoError)
+            {
+                return MTKTestError.MissingMTKSerialPort;
+            }
 
             this.Log.PrintLog(this, String.Format("(DUT#{0}@{1}) Get RSSI Value on CH {2}: {3}", CurrentDUT+1,DUTSerialPort.PortName, ChannelNumber.ToString(),CommandResult), LogDetailLevel.LogRelevant);
 
             
 
-            if (CommandRetVal != MTKTestError.NoError)
-            {
-                return CommandRetVal;
-            }
+            
 
             string[] TempValue = new string[CommandResults.Count()];
             string[] TempParameter = new string[CommandResults.Count()];
@@ -378,15 +383,14 @@ namespace CyBLE_MTK_Application
             return MTKTestError.NoError;
         }
 
+        
+
         public override MTKTestError RunTest()
         {
-            MTKTestError RetVal = MTKTestError.NoError;
+            MTKTestError RetVal = MTKTestError.Pending;
             List<MTKTestError> mTKTestErrors = new List<MTKTestError>();
 
-            MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_ALL_PASS;
-            TestStatusUpdate(MTKTestMessageType.Failure, "Pass");
-            RetVal = MTKTestError.NoError;
-            TestResult.Result = "PASS";
+            
 
             mTKTestErrors.Clear();
             TempParameters.Clear();
@@ -428,17 +432,7 @@ namespace CyBLE_MTK_Application
             {
                 switch (item)
                 {
-                    case MTKTestError.NoError:
-                        if (MTKSerialPort.IsOpen)
-                        {
-                            
-                        }
-                        else
-                        {
-                            MTKTestTmplSFCSErrCode = ECCS.ERROR_CODE_CAUSED_BY_MTK_TESTER;
-                        }
-                        
-                        break;
+                    
                     case MTKTestError.ReceivedNAC:
                         break;
                     case MTKTestError.MissingDUT:
@@ -486,6 +480,10 @@ namespace CyBLE_MTK_Application
                         break;
                     case MTKTestError.ProcessCheckFailure:
                         break;
+                    case MTKTestError.NoError:
+                        
+
+                        break;
                     default:
                         MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_CUS_TEST_FAILURE_BUT_UNKNOWN;
                         RetVal = MTKTestError.TestFailed;
@@ -494,7 +492,14 @@ namespace CyBLE_MTK_Application
                         
                 }
 
-                
+                if (RetVal == MTKTestError.NoError)
+                {
+                    MTKTestTmplSFCSErrCode = ECCS.ERRORCODE_ALL_PASS;
+                    TestStatusUpdate(MTKTestMessageType.Success, "Pass");
+                    RetVal = MTKTestError.NoError;
+                    TestResult.Result = "PASS";
+                    break;
+                }
 
             }
 
@@ -502,7 +507,11 @@ namespace CyBLE_MTK_Application
 
 
             stopwatch.Stop();
+            this.Log.PrintLog(this, string.Format("Result: {0}", TestResult.Result), LogDetailLevel.LogRelevant);
             this.Log.PrintLog(this, string.Format("Perform {0}: {1} secs", DisplayText, stopwatch.Elapsed.TotalMilliseconds / 1000), LogDetailLevel.LogRelevant);
+            
+            
+
             TestResultUpdate(TestResult);
             return RetVal;
         }

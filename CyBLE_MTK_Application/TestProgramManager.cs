@@ -791,7 +791,7 @@ namespace CyBLE_MTK_Application
 
                 if (TestResult != MTKTestError.NoError)
                 {
-                    if (TestResult == MTKTestError.IgnoringDUT|| TestResult == MTKTestError.ProgrammerNotConfigured && CyBLE_MTK.DUTsTestFlag[_CurrentDUT])
+                    if ((TestResult == MTKTestError.IgnoringDUT|| TestResult == MTKTestError.ProgrammerNotConfigured && CyBLE_MTK.DUTsTestFlag[_CurrentDUT])&& CurrentTestIndex == 0)
                     {
                         OnIgnoreDUT();
                         return MTKTestError.IgnoringDUT;

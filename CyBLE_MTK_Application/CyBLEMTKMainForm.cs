@@ -81,7 +81,7 @@ namespace CyBLE_MTK_Application
         public static string LogWriteLine = "";
         public static string CurrentTestXMLFile = "";
 
-        
+        public static bool isResult2ErrorCodeMismatch = false;
 
 
         /// <summary>
@@ -4981,8 +4981,8 @@ namespace CyBLE_MTK_Application
 
                 Logger.PrintLog(this, ex.Message, LogDetailLevel.LogEverything);
             }
-            
 
+            isResult2ErrorCodeMismatch = false;
             //DUT one by one
             for (int i = 0; i < DUTInfoDataGridView.Rows.Count; i++)
             {
@@ -5158,6 +5158,10 @@ namespace CyBLE_MTK_Application
 
             }
 
+            if (isResult2ErrorCodeMismatch)
+            {
+                MessageBox.Show("机台发生异常，停止作业，请工程师确认！！！", "ErrorCodeFindingErrorButTestResultPass",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
 
             DUTTestResults.Clear();
             errcodes.Clear();
@@ -5498,8 +5502,10 @@ namespace CyBLE_MTK_Application
 
                 Logger.PrintLog(this, err_message, LogDetailLevel.LogRelevant);
 
-
+                isResult2ErrorCodeMismatch = true;
             }
+
+            
         }
 
 

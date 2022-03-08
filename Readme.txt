@@ -1,4 +1,8 @@
 Release notes:
+2022-03-08 (v4.7.5)
+1.Give a warning message box when test result vs. error code mismatch
+2.Only Allow CurrentTestIndex == 0 to be set IGNORE when serial port not configured
+
 2022-03-07 (v4.7.4)
 1.flush buffer to writerstream before App log append new line
 2.Handle OnTestError for those test failure due to MTKSerialPort or DUTSerialPort UART communication loss
