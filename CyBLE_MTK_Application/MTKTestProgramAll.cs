@@ -398,13 +398,15 @@ namespace CyBLE_MTK_Application
 
                 for (int i = 0; i < 5; i++)
                 {
-                    Thread.Sleep(UARTCaptureDelay);
+                    
                     DUTSerialPorts[DeviceCount].WriteLine("\n");
                     ReceivedEvent = DUTSerialPorts[DeviceCount].ReadExisting();
 
+                    Thread.Sleep(UARTCaptureDelay);
+
                     int count = ReceivedEvent.ToCharArray().Count(x => x == ',');
 
-                    if (count > 8)
+                    if (count > 3)
                     {
                         break;
                     }

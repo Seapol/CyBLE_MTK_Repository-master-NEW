@@ -1,4 +1,7 @@
 Release notes:
+2022-03-10 (v4.7.6)
+1.Change the minimum count of PSoC UART DUMP from >8 to >3 for ProgAllDevice module firmware checks
+
 2022-03-08 (v4.7.5)
 1.Give a warning message box when test result vs. error code mismatch
 2.Only Allow CurrentTestIndex == 0 to be set IGNORE when serial port not configured
